@@ -1,12 +1,17 @@
 from flask import Flask
-from config import Config
+from flask_sqlalchemy import SQLAlchemy
+from flask_bootstrap import Bootstrap
 
-def create_app():
-    app = Flask(__name__)
-    app.config.from_object(Config)
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///professores.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    # registrar blueprint
-    from .main import main as main_blueprint
-    app.register_blueprint(main_blueprint)
+db = SQLAlchemy(app)
+Bootstrap(app)
 
-    return app
+from app.main.routes import main
+from app import models   # ← ADICIONE ISSO
+
+app.register_blueprint(main)
+
+db.create_all()

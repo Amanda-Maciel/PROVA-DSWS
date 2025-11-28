@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Avaliação Semestral</title>
+    {{ bootstrap.load_css() }}
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <a class="navbar-brand" href="/">Avaliação semestral</a>
+
+    <ul class="navbar-nav">
+        <li class="nav-item"><a href="/professores" class="nav-link">Cadastro de Professores</a></li>
+        <li class="nav-item"><a href="/disciplinas" class="nav-link">Cadastro de Disciplinas</a></li>
+        <li class="nav-item"><a href="/alunos" class="nav-link">Cadastro de Alunos</a></li>
+        <li class="nav-item"><a href="/cursos" class="nav-link">Cadastro de Cursos</a></li>
+        <li class="nav-item"><a href="/ocorrencias" class="nav-link">Cadastro de Ocorrências</a></li>
+    </ul>
+</nav>
+
+<div class="container mt-4">
+    {% block conteudo %}{% endblock %}
+</div>
+
+{{ bootstrap.load_js() }}
+</body>
+</html>

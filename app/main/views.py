@@ -4,8 +4,8 @@ from datetime import datetime
 
 @main.route("/")
 def index():
-    aluno = "Fábio Teixeira"
-    prontuario = "PT23820X"
+    aluno = "Amanda Maciel"
+    prontuario = "PT3032591"
     data_hora = datetime.now().strftime("%B %d, %Y %I:%M %p")
 
     return render_template(
