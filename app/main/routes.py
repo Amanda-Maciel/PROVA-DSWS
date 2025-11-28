@@ -3,8 +3,6 @@ from datetime import datetime
 from app import db
 from app.models import Professor
 
-main = Blueprint('main', __name__)
-
 
 @main.route('/')
 def index():
