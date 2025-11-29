@@ -3,6 +3,8 @@ from datetime import datetime
 from app import db
 from app.models import Professor
 
+# === CRIAÇÃO DO BLUEPRINT ===
+main = Blueprint('main', __name__, template_folder='templates')
 
 @main.route('/')
 def index():
@@ -27,7 +29,6 @@ def professores():
 
     lista = Professor.query.all()
     return render_template('professores.html', lista=lista)
-
 
 
 @main.route('/disciplinas')

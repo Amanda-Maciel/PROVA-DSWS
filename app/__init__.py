@@ -15,7 +15,7 @@ def create_app():
     from app.models import Professor
 
     # Registrar blueprint
-    from .main import main as main_blueprint
+    from app.main.routes import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
     # Criar tabelas
