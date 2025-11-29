@@ -3,6 +3,17 @@
 {% block conteudo %}
 <h2>Cadastro de Professores</h2>
 
+<!-- MENSAGEM DE SUCESSO -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    {% for category, message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
 <form method="POST">
     <div class="form-group">
         <label>Nome do Professor:</label>
@@ -11,7 +22,11 @@
 
     <div class="form-group">
         <label>Disciplina:</label>
-        <input type="text" class="form-control" name="disciplina" required>
+        <select name="disciplina" class="form-control" required>
+            {% for d in disciplinas_opcoes %}
+                <option value="{{ d }}">{{ d }}</option>
+            {% endfor %}
+        </select>
     </div>
 
     <button class="btn btn-primary mt-2">Cadastrar</button>
@@ -19,7 +34,7 @@
 
 <hr>
 
-<h3>Relação de professores cadastrados</h3>
+<h3>Relação de Professores Cadastrados</h3>
 
 <table class="table table-striped">
     <thead>

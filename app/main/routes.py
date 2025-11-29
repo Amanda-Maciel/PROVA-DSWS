@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, flash
 from datetime import datetime
 from app import db
 from app.models import Professor
@@ -17,6 +17,9 @@ def index():
 @main.route('/professores', methods=['GET', 'POST'])
 def professores():
 
+    # Lista de disciplinas disponíveis
+    disciplinas_opcoes = ["DSWA5", "GPSA5", "IHCA5", "SODA5", "PJIA5", "TCOA5"]
+
     if request.method == 'POST':
         nome = request.form['nome']
         disciplina = request.form['disciplina']
@@ -25,10 +28,17 @@ def professores():
         db.session.add(novo_prof)
         db.session.commit()
 
+        # MENSAGEM DE SUCESSO
+        flash("Professor cadastrado com sucesso!", "success")
+
         return redirect('/professores')
 
     lista = Professor.query.all()
-    return render_template('professores.html', lista=lista)
+    return render_template(
+        'professores.html',
+        lista=lista,
+        disciplinas_opcoes=disciplinas_opcoes
+    )
 
 
 @main.route('/disciplinas')
